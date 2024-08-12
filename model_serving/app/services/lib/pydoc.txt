@@ -1,0 +1,204 @@
+Help on module classifiers:
+
+NAME
+    classifiers - Этот файл содержит иерархический классификатор, написанный для тестового залания в ecom.tech
+
+DESCRIPTION
+    Базовый классификатор обучается для каждого отдельного родительского класса (то есть имеющего дочерние). Один родительский класс - один классификатор.
+
+CLASSES
+    sklearn.base.BaseEstimator(sklearn.utils._metadata_requests._MetadataRequester)
+        TopDownClassifier(sklearn.base.BaseEstimator, sklearn.base.ClassifierMixin)
+    sklearn.base.ClassifierMixin(builtins.object)
+        TopDownClassifier(sklearn.base.BaseEstimator, sklearn.base.ClassifierMixin)
+
+    class TopDownClassifier(sklearn.base.BaseEstimator, sklearn.base.ClassifierMixin)
+     |  TopDownClassifier(base_classifier, hierarchy, config=None)
+     |
+     |  Method resolution order:
+     |      TopDownClassifier
+     |      sklearn.base.BaseEstimator
+     |      sklearn.utils._metadata_requests._MetadataRequester
+     |      sklearn.base.ClassifierMixin
+     |      builtins.object
+     |
+     |  Methods defined here:
+     |
+     |  __init__(self, base_classifier, hierarchy, config=None)
+     |      Инициализация TopDownClassifier.
+     |
+     |      :param base_classifier: Базовый классификатор, который будет использоваться на каждом уровне иерархии.
+     |      :param hierarchy: Иерархия классов в виде вложенного словаря.
+     |      :param config: Дополнительные параметры, которые будут переданы базовому классификатору.
+     |
+     |  fit(self, X, y)
+     |      Обучение модели на данных X и многомерных метках y.
+     |
+     |      :param X: Входные данные, матрица признаков.
+     |      :param y: Двумерный массив меток классов, где каждый столбец соответствует уровню иерархии.
+     |      :return: self
+     |
+     |  predict(self, X)
+     |      Предсказание классов для входных данных X.
+     |
+     |      :param X: Входные данные, матрица признаков.
+     |      :return: Двумерный массив предсказанных меток классов.
+     |
+     |  set_score_request(self: classifiers.TopDownClassifier, *, sample_weight: Union[bool, NoneType, str] = '$UNCHANGED$') -> classifiers.TopDownClassifier from sklearn.utils._metadata_requests.RequestMethod.__get__.<locals>
+     |      Request metadata passed to the ``score`` method.
+     |
+     |      Note that this method is only relevant if
+     |      ``enable_metadata_routing=True`` (see :func:`sklearn.set_config`).
+     |      Please see :ref:`User Guide <metadata_routing>` on how the routing
+     |      mechanism works.
+     |
+     |      The options for each parameter are:
+     |
+     |      - ``True``: metadata is requested, and passed to ``score`` if provided. The request is ignored if metadata is not provided.
+     |
+     |      - ``False``: metadata is not requested and the meta-estimator will not pass it to ``score``.
+     |
+     |      - ``None``: metadata is not requested, and the meta-estimator will raise an error if the user provides it.
+     |
+     |      - ``str``: metadata should be passed to the meta-estimator with this given alias instead of the original name.
+     |
+     |      The default (``sklearn.utils.metadata_routing.UNCHANGED``) retains the
+     |      existing request. This allows you to change the request for some
+     |      parameters and not others.
+     |
+     |      .. versionadded:: 1.3
+     |
+     |      .. note::
+     |          This method is only relevant if this estimator is used as a
+     |          sub-estimator of a meta-estimator, e.g. used inside a
+     |          :class:`~sklearn.pipeline.Pipeline`. Otherwise it has no effect.
+     |
+     |      Parameters
+     |      ----------
+     |      sample_weight : str, True, False, or None,                     default=sklearn.utils.metadata_routing.UNCHANGED
+     |          Metadata routing for ``sample_weight`` parameter in ``score``.
+     |
+     |      Returns
+     |      -------
+     |      self : object
+     |          The updated object.
+     |
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from sklearn.base.BaseEstimator:
+     |
+     |  __getstate__(self)
+     |      Helper for pickle.
+     |
+     |  __repr__(self, N_CHAR_MAX=700)
+     |      Return repr(self).
+     |
+     |  __setstate__(self, state)
+     |
+     |  __sklearn_clone__(self)
+     |
+     |  get_params(self, deep=True)
+     |      Get parameters for this estimator.
+     |
+     |      Parameters
+     |      ----------
+     |      deep : bool, default=True
+     |          If True, will return the parameters for this estimator and
+     |          contained subobjects that are estimators.
+     |
+     |      Returns
+     |      -------
+     |      params : dict
+     |          Parameter names mapped to their values.
+     |
+     |  set_params(self, **params)
+     |      Set the parameters of this estimator.
+     |
+     |      The method works on simple estimators as well as on nested objects
+     |      (such as :class:`~sklearn.pipeline.Pipeline`). The latter have
+     |      parameters of the form ``<component>__<parameter>`` so that it's
+     |      possible to update each component of a nested object.
+     |
+     |      Parameters
+     |      ----------
+     |      **params : dict
+     |          Estimator parameters.
+     |
+     |      Returns
+     |      -------
+     |      self : estimator instance
+     |          Estimator instance.
+     |
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from sklearn.utils._metadata_requests._MetadataRequester:
+     |
+     |  get_metadata_routing(self)
+     |      Get metadata routing of this object.
+     |
+     |      Please check :ref:`User Guide <metadata_routing>` on how the routing
+     |      mechanism works.
+     |
+     |      Returns
+     |      -------
+     |      routing : MetadataRequest
+     |          A :class:`~sklearn.utils.metadata_routing.MetadataRequest` encapsulating
+     |          routing information.
+     |
+     |  ----------------------------------------------------------------------
+     |  Class methods inherited from sklearn.utils._metadata_requests._MetadataRequester:
+     |
+     |  __init_subclass__(**kwargs)
+     |      Set the ``set_{method}_request`` methods.
+     |
+     |      This uses PEP-487 [1]_ to set the ``set_{method}_request`` methods. It
+     |      looks for the information available in the set default values which are
+     |      set using ``__metadata_request__*`` class attributes, or inferred
+     |      from method signatures.
+     |
+     |      The ``__metadata_request__*`` class attributes are used when a method
+     |      does not explicitly accept a metadata through its arguments or if the
+     |      developer would like to specify a request value for those metadata
+     |      which are different from the default ``None``.
+     |
+     |      References
+     |      ----------
+     |      .. [1] https://www.python.org/dev/peps/pep-0487
+     |
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from sklearn.utils._metadata_requests._MetadataRequester:
+     |
+     |  __dict__
+     |      dictionary for instance variables
+     |
+     |  __weakref__
+     |      list of weak references to the object
+     |
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from sklearn.base.ClassifierMixin:
+     |
+     |  score(self, X, y, sample_weight=None)
+     |      Return the mean accuracy on the given test data and labels.
+     |
+     |      In multi-label classification, this is the subset accuracy
+     |      which is a harsh metric since you require for each sample that
+     |      each label set be correctly predicted.
+     |
+     |      Parameters
+     |      ----------
+     |      X : array-like of shape (n_samples, n_features)
+     |          Test samples.
+     |
+     |      y : array-like of shape (n_samples,) or (n_samples, n_outputs)
+     |          True labels for `X`.
+     |
+     |      sample_weight : array-like of shape (n_samples,), default=None
+     |          Sample weights.
+     |
+     |      Returns
+     |      -------
+     |      score : float
+     |          Mean accuracy of ``self.predict(X)`` w.r.t. `y`.
+
+FILE
+    /home/ramil/projects/samokat/model_serving/app/services/lib/classifiers.py
+
+
